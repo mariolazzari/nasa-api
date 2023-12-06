@@ -1,10 +1,11 @@
-import ApodRequest from './types/ApodRequest';
-import ApodResponse from './types/ApodResponse';
+import Apod from './types/Apod';
 import Result from './types/Result';
+import { formatDate } from './utils';
 
 export class Nasa {
-  private baseUrl = 'https://api.nasa.gov';
-  private apiKey = '';
+  private readonly apiKey: string;
+  private baseUrl = 'https://api.nasa.gov' as const;
+  private apodUrl = '/planetary/apod' as const;
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
@@ -37,33 +38,37 @@ export class Nasa {
     }
   }
 
-  // Nasa picture of the day
-  public async apod({
-    date,
-    start_date,
-    end_date,
-    count,
-    thumbs = false,
-  }: ApodRequest = {}) {
-    let qs = `&thumbs=${thumbs}`;
-
-    switch (true) {
-      case !!date:
-        qs += `&date=${date}`;
-        break;
-
-      case !date && !!start_date && !!end_date:
-        qs += `&start_date=${start_date}&end_date=${end_date}`;
-        break;
-
-      case !date && !start_date && !end_date && !!count:
-        qs += `&count=${count}`;
-        break;
+  private isThumbs(qs: string, thumbs: boolean) {
+    if (thumbs) {
+      return `${qs}&thumbs=true`;
     }
+    return qs;
+  }
 
-    const res = await this.fetchData<ApodResponse>('/planetary/apod', qs);
+  public async apodDate(date: Date = new Date(), thumbs: boolean = false) {
+    let qs: string = `&date=${formatDate(date)}`;
+    qs = this.isThumbs(qs, thumbs);
 
-    return res;
+    return await this.fetchData<Apod>(this.apodUrl, qs);
+  }
+
+  public async apodDates(
+    from: Date = new Date(),
+    to: Date = new Date(),
+    thumbs: boolean = false
+  ) {
+    let qs: string = `&start_date=${formatDate(from)}`;
+    qs += `&end_date=${formatDate(to)}`;
+    qs = this.isThumbs(qs, thumbs);
+
+    return await this.fetchData<Apod[]>(this.apodUrl, qs);
+  }
+
+  public async apodRandom(count: number = 1, thumbs: boolean = false) {
+    let qs: string = `&count=${count}`;
+    qs = this.isThumbs(qs, thumbs);
+
+    return await this.fetchData<Apod[]>(this.apodUrl, qs);
   }
 }
 
