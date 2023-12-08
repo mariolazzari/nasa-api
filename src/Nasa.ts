@@ -1,4 +1,5 @@
 import Apod from './types/Apod';
+import NeoResponse from './types/NeroResponse';
 import Result from './types/Result';
 import { formatDate } from './utils';
 
@@ -6,6 +7,7 @@ export class Nasa {
   private readonly apiKey: string;
   private baseUrl = 'https://api.nasa.gov' as const;
   private apodUrl = '/planetary/apod' as const;
+  private neoUrl = '/neo/rest/v1' as const;
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
@@ -45,6 +47,8 @@ export class Nasa {
     return qs;
   }
 
+  // Apod
+
   public async apodDate(date: Date = new Date(), thumbs: boolean = false) {
     let qs: string = `&date=${formatDate(date)}`;
     qs = this.isThumbs(qs, thumbs);
@@ -69,6 +73,15 @@ export class Nasa {
     qs = this.isThumbs(qs, thumbs);
 
     return await this.fetchData<Apod[]>(this.apodUrl, qs);
+  }
+
+  // Neo
+
+  public async neoFeed(from: Date = new Date(), to: Date = new Date()) {
+    let qs: string = `&start_date=${formatDate(from)}`;
+    qs += `&end_date=${formatDate(to)}`;
+
+    return await this.fetchData<NeoResponse>(`${this.neoUrl}/feed`, qs);
   }
 }
 
