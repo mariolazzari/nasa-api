@@ -67,9 +67,9 @@ npm build
 This task will create a distribution version of the project inside your local dist/ folder
 ___
 
-## Rijks class
+## Nasa class
 
-Rijks **class** content handles all the requests and the responses to the three main Rijks museum REST APIs.
+Nasa **class** content handles all the requests and the responses to the three main Rijks museum REST APIs.
 
 ### Constructor
 
