@@ -1,4 +1,6 @@
 import Apod from './types/Apod';
+import Link from './types/Link';
+import Neo from './types/Neo';
 import NeoResponse from './types/NeroResponse';
 import Result from './types/Result';
 import { formatDate } from './utils';
@@ -82,6 +84,12 @@ export class Nasa {
     qs += `&end_date=${formatDate(to)}`;
 
     return await this.fetchData<NeoResponse>(`${this.neoUrl}/feed`, qs);
+  }
+
+  public async neoLookup(asteroidId: number) {
+    const url = `${this.neoUrl}/neo/${asteroidId}`;
+
+    return await this.fetchData<Neo & Link>(url);
   }
 }
 

@@ -19,4 +19,13 @@ describe('Near Earth objects', () => {
       expect(total).toBe(data.element_count);
     }
   });
+
+  it('should returns asteroid data', async () => {
+    const id = 3542519;
+    const { success, data, error } = await nasa.neoLookup(id);
+
+    expect(success).toBeTruthy();
+    expect(error).toBeUndefined();
+    expect(data).toBeDefined;
+  });
 });
