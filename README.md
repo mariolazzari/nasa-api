@@ -91,7 +91,97 @@ Nasa client includes the following three methods:
 
 #### apodDate
 
+*Description*
+
+This asynchronous **method** handles `GET /planetary/apod` REST API, in order to return the *astronomical picture of the day* for selected day (current day by default).
+
+*Prototype*
+
+```ts
+async apodDate(date: Date = new Date()): Promise<Result<Apod>> 
+```
+
+*Sample code*
+
+```ts
+const date = new Date(2023, 2, 28);
+const apod: Result<Apod> = await nasa.apodDate(date);
+```
+
 #### apodDates
 
+*Description*
+
+This asynchronous **method** handles `GET /planetary/apod` REST API, in order to return the *astronomical pictures of the day* for selected date range.
+
+*Prototype*
+
+```ts
+async apodDates(from: Date = new Date(), to: Date = new Date()): Promise<Result<Apod[]>> 
+```
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const apods: Result<Apod[]> = await nasa.apodDates(from, to);
+```
+
 #### apodRandom
+
+*Description*
+
+This asynchronous **method** handles `GET /planetary/apod` REST API, in order to return *n* random *astronomical pictures of the day* (10 pictures by default).
+
+*Prototype*
+
+```ts
+async apodRandom(n:number = 10): Promise<Result<Apod[]>> 
+```
+
+*Sample code*
+
+```ts
+const apods: Result<Apod[]> = await nasa.apodRandom(10);
+```
+
+#### neoFeed
+
+*Description*
+
+This asynchronous **method** handles `GET /neo/rest/v1/feed` REST API, in order to return the *near Earth objects* for selected dates range.
+
+*Prototype*
+
+```ts
+async neoFeed(from: Date, to: Date): Promise<Result<NeoRespons>> 
+```
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const neos: Result<NeoResponse> = await nasa.neoFeed(from, to);
+```
+
+#### neoLookup
+
+*Description*
+
+This asynchronous **method** handles `GET /neo/rest/v1/neo/:id` REST API, in order to return the *near Earth objects* for selected asteroid ID, including its orbital data.
+
+*Prototype*
+
+```ts
+async neolookup(asteroidId:number): Promise<Result<Neo & Link>> 
+```
+
+*Sample code*
+
+```ts
+const asteroidId = 3542519
+const neo: Result<Neo & Link> = await nasa.neoLookup(asteroidId);
+```
 
