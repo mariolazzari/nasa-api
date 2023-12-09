@@ -11,7 +11,7 @@ export type CoronalMassEjectionAnalysis = {
   note: string;
   levelOfData: number;
   link: string;
-  enlilList: Enlil[];
+  enlilList?: Enlil[];
 };
 
 export default CoronalMassEjectionAnalysis;

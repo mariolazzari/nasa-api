@@ -1,5 +1,6 @@
 import Apod from './types/apod/Apod';
 import CoronalMassEjection from './types/donki/CoronalMassEjection';
+import CoronalMassEjectionAnalysis from './types/donki/CoronalMassEjectionAnalysis';
 import Link from './types/Link';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
@@ -102,6 +103,19 @@ export class Nasa {
 
     return await this.fetchData<CoronalMassEjection[]>(
       `${this.donkiUrl}/CME`,
+      qs
+    );
+  }
+
+  public async donkiCmeAnalysis(
+    from: Date = new Date(),
+    to: Date = new Date()
+  ) {
+    let qs: string = `&start_date=${formatDate(from)}`;
+    qs += `&end_date=${formatDate(to)}`;
+
+    return await this.fetchData<CoronalMassEjectionAnalysis[]>(
+      `${this.donkiUrl}/CMEAnalysis`,
       qs
     );
   }

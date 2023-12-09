@@ -1,3 +1,9 @@
+export const DAYS_30 = 2592000000;
+
+export const getNow = () => new Date();
+
+export const getLast30 = () => new Date(new Date().getTime() - DAYS_30);
+
 export const formatDate = (date: Date = new Date()) => {
   const year = date.getFullYear();
 
