@@ -5,7 +5,7 @@ import Link from './types/Link';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
 import Result from './types/Result';
-import { formatDate } from './utils';
+import { formatDate, getLast30, getNow } from './utils';
 
 export class Nasa {
   private readonly apiKey: string;
@@ -97,7 +97,7 @@ export class Nasa {
 
   // Donki
 
-  public async donkiCme(from: Date = new Date(), to: Date = new Date()) {
+  public async donkiCme(from = getLast30(), to = getNow()) {
     let qs: string = `&start_date=${formatDate(from)}`;
     qs += `&end_date=${formatDate(to)}`;
 
@@ -108,11 +108,15 @@ export class Nasa {
   }
 
   public async donkiCmeAnalysis(
-    from: Date = new Date(),
-    to: Date = new Date()
+    from = getLast30(),
+    to = getNow(),
+    mostAccurateOnly = true,
+    completeEntryOnly = true,
+    speed = 0
   ) {
-    let qs: string = `&start_date=${formatDate(from)}`;
-    qs += `&end_date=${formatDate(to)}`;
+    const qs: string = `&start_date=${formatDate(from)}&end_date=${formatDate(
+      to
+    )}&mostAccurateOnly=${mostAccurateOnly}&completeEntryOnly=${completeEntryOnly}&speed=${speed}`;
 
     return await this.fetchData<CoronalMassEjectionAnalysis[]>(
       `${this.donkiUrl}/CMEAnalysis`,

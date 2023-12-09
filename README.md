@@ -185,6 +185,71 @@ const asteroidId = 3542519
 const neo: Result<Neo & Link> = await nasa.neoLookup(asteroidId);
 ```
 
+
+#### donkiCme
+
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/CME` REST API, in order to return the *coronal mass ejection (CME)* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiCme(from: Date, to: Date): Promise<Result<CoronalMassEjection>> 
+```
+
+Method parameters
+
+| Parameter | Type | Required | Default        |
+| --------- | ---- | :------: | -------------- |
+| from      | Date |    No    | 30 days before |
+| to        | Date |    No    | today          |
+
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const cme: Result<CoronalMassEjection> = await nasa.donkiCme(from, to);
+```
+
+#### donkiCmeAnalysis
+
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/CMEAnalysis` REST API, in order to return the *coronal mass ejection (CME) analysis* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiCme(from: Date, to: Date, mostAccurateOnly: boolean, completeEntryOnly: boolean, speed:number ): Promise<Result<CoronalMassEjectionAnalysis>> 
+```
+
+Method parameters
+
+| Parameter         | Type    | Required | Default        |
+| ----------------- | ------- | :------: | -------------- |
+| from              | Date    |    No    | 30 days before |
+| to                | Date    |    No    | today          |
+| mostAccurateOnly  | boolean |    No    | true           |
+| completeEntryOnly | boolean |    No    | true           |
+| speed             | number  |    No    | 0              |
+
+
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const cme: Result<CoronalMassEjection> = await nasa.donkiCme(from, to);
+```
+
+
+
+---
+
 ## Authors
 
 * **Mario Lazzari** - *Initial work*
