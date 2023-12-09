@@ -237,13 +237,96 @@ Method parameters
 | speed             | number  |    No    | 0              |
 
 
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const cmeAnalysis: Result<CoronalMassEjectionAnalysis> = await nasa.donkiCmeAnalysis(from, to);
+```
+
+#### donkiGst
+
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/GST` REST API, in order to return the *Geomagnetic Storm (GST)* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiGst(from: Date, to: Date ): Promise<Result<GeomagneticStorm>> 
+```
+
+Method parameters
+
+| Parameter | Type | Required | Default        |
+| --------- | ---- | :------: | -------------- |
+| from      | Date |    No    | 30 days before |
+| to        | Date |    No    | today          |
+
 
 *Sample code*
 
 ```ts
 const from = new Date(2023, 2, 21);
 const to = new Date(2023, 2, 8);
-const cme: Result<CoronalMassEjection> = await nasa.donkiCme(from, to);
+const gst: Result<GeomagneticStorm> = await nasa.donkiCme(from, to);
+```
+
+#### donkiIps
+
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/IPS` REST API, in order to return the *Interplanetary Shock (IPS)* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiIps(from: Date, to: Date ): Promise<Result<InterplanetaryShock>> 
+```
+
+Method parameters
+
+| Parameter | Type | Required | Default        |
+| --------- | ---- | :------: | -------------- |
+| from      | Date |    No    | 30 days before |
+| to        | Date |    No    | today          |
+
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const ips: Result<InterplanetaryShock> = await nasa.donkiIps(from, to);
+```
+
+#### donkiFlr
+
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/FLR` REST API, in order to return the *Solar Flare (FLR)* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiFlr(from: Date, to: Date ): Promise<Result<SolarFlare>> 
+```
+
+Method parameters
+
+| Parameter | Type | Required | Default        |
+| --------- | ---- | :------: | -------------- |
+| from      | Date |    No    | 30 days before |
+| to        | Date |    No    | today          |
+
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const ips: Result<SolarFlare> = await nasa.donkiIps(from, to);
 ```
 
 
