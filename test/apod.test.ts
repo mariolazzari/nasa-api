@@ -35,8 +35,6 @@ describe('Picture of the day', () => {
   it('should return 10 random pictures with thumbs available', async () => {
     const { success, data, error } = await nasa.apodRandom(count, thumbs);
 
-    console.log(success, data, error);
-
     expect(success).toBeTruthy();
     expect(data).toBeDefined();
     expect((data as Apod[]).length).toBe(count);

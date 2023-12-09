@@ -1,4 +1,5 @@
 import Apod from './types/apod/Apod';
+import CoronalMassEjection from './types/donki/CoronalMassEjection';
 import Link from './types/Link';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
@@ -10,6 +11,7 @@ export class Nasa {
   private baseUrl = 'https://api.nasa.gov' as const;
   private apodUrl = '/planetary/apod' as const;
   private neoUrl = '/neo/rest/v1' as const;
+  private donkiUrl = '/DONKI' as const;
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
@@ -94,7 +96,15 @@ export class Nasa {
 
   // Donki
 
-  //  public async donkiCme(from: Date = new Date(), to: Date = new Date()) {}
+  public async donkiCme(from: Date = new Date(), to: Date = new Date()) {
+    let qs: string = `&start_date=${formatDate(from)}`;
+    qs += `&end_date=${formatDate(to)}`;
+
+    return await this.fetchData<CoronalMassEjection[]>(
+      `${this.donkiUrl}/CME`,
+      qs
+    );
+  }
 }
 
 export default Nasa;
