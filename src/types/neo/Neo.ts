@@ -1,6 +1,6 @@
 import CloseApproach from './CloseApproach';
 import Diameter from './DIameter';
-import Link from './Link';
+import Link from '../Link';
 import { OrbitalData } from './OrbitalData';
 
 // Near Earth bject

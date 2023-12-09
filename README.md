@@ -185,3 +185,13 @@ const asteroidId = 3542519
 const neo: Result<Neo & Link> = await nasa.neoLookup(asteroidId);
 ```
 
+## Authors
+
+* **Mario Lazzari** - *Initial work*
+
+## Links
+
+* Demo [app](https://www.mariolazzari.it/hobbies/sci/nasa)
+* My personal [site](https://mariolazzari.it)
+* My [github](https://github.com/mariolazzari) profile
+* Rijksmuseum API [documentation](https://data.rijksmuseum.nl/object-metadata/api)

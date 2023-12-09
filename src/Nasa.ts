@@ -1,7 +1,7 @@
-import Apod from './types/Apod';
+import Apod from './types/apod/Apod';
 import Link from './types/Link';
-import Neo from './types/Neo';
-import NeoResponse from './types/NeroResponse';
+import Neo from './types/neo/Neo';
+import NeoResponse from './types/neo/NeroResponse';
 import Result from './types/Result';
 import { formatDate } from './utils';
 
@@ -91,6 +91,10 @@ export class Nasa {
 
     return await this.fetchData<Neo & Link>(url);
   }
+
+  // Donki
+
+  //  public async donkiCme(from: Date = new Date(), to: Date = new Date()) {}
 }
 
 export default Nasa;

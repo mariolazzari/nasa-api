@@ -1,5 +1,5 @@
-import Distance from './Distance';
-import Velocity from './Velocity';
+import Distance from '../Distance';
+import Velocity from '../Velocity';
 
 export type CloseApproach = {
   close_approach_date: string;
