@@ -5,6 +5,7 @@ import CoronalMassEjectionAnalysis from './types/donki/CoronalMassEjectionAnalys
 import GeomagneticStorm from './types/donki/GeomagneticStorm';
 import InterplanetaryShock from './types/donki/InterplanetaryShock';
 import Location from './types/donki/Location';
+import SolarFlare from './types/donki/SolarFlare';
 import Link from './types/Link';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
@@ -148,6 +149,12 @@ export class Nasa {
       `${this.donkiUrl}/IPS`,
       qs
     );
+  }
+
+  public async donkiFlr(from = getLast30(), to = getNow()) {
+    const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
+
+    return await this.fetchData<SolarFlare[]>(`${this.donkiUrl}/FLR`, qs);
   }
 }
 
