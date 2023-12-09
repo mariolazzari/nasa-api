@@ -1,6 +1,7 @@
 import Apod from './types/apod/Apod';
 import CoronalMassEjection from './types/donki/CoronalMassEjection';
 import CoronalMassEjectionAnalysis from './types/donki/CoronalMassEjectionAnalysis';
+import { GeomagneticStorm } from './types/donki/GeomagneticStorm';
 import Link from './types/Link';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
@@ -114,7 +115,7 @@ export class Nasa {
     completeEntryOnly = true,
     speed = 0
   ) {
-    const qs: string = `&start_date=${formatDate(from)}&end_date=${formatDate(
+    const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(
       to
     )}&mostAccurateOnly=${mostAccurateOnly}&completeEntryOnly=${completeEntryOnly}&speed=${speed}`;
 
@@ -122,6 +123,12 @@ export class Nasa {
       `${this.donkiUrl}/CMEAnalysis`,
       qs
     );
+  }
+
+  public async donkiGst(from = getLast30(), to = getNow()) {
+    const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
+
+    return await this.fetchData<GeomagneticStorm[]>(`${this.donkiUrl}/GST`, qs);
   }
 }
 

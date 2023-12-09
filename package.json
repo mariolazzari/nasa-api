@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "license": "MIT",
   "main": "dist/index.js",
@@ -59,10 +59,12 @@
   },
   "keywords": [
     "nasa",
+    "nasa-api",
     "earth",
     "moon",
     "mars",
     "space",
+    "weather",
     "node",
     "typescript",
     "rest",
