@@ -8,3 +8,5 @@ export type GeomagneticStorm = {
   linkedEvents: Event[];
   link: string;
 };
+
+export default GeomagneticStorm;

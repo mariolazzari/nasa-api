@@ -1,7 +1,10 @@
 import Apod from './types/apod/Apod';
+import Catalog from './types/donki/Catalog';
 import CoronalMassEjection from './types/donki/CoronalMassEjection';
 import CoronalMassEjectionAnalysis from './types/donki/CoronalMassEjectionAnalysis';
-import { GeomagneticStorm } from './types/donki/GeomagneticStorm';
+import GeomagneticStorm from './types/donki/GeomagneticStorm';
+import InterplanetaryShock from './types/donki/InterplanetaryShock';
+import Location from './types/donki/Location';
 import Link from './types/Link';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
@@ -55,7 +58,7 @@ export class Nasa {
 
   // Apod
 
-  public async apodDate(date: Date = new Date(), thumbs: boolean = false) {
+  public async apodDate(date = getNow(), thumbs: boolean = false) {
     let qs: string = `&date=${formatDate(date)}`;
     qs = this.isThumbs(qs, thumbs);
 
@@ -74,7 +77,7 @@ export class Nasa {
     return await this.fetchData<Apod[]>(this.apodUrl, qs);
   }
 
-  public async apodRandom(count: number = 1, thumbs: boolean = false) {
+  public async apodRandom(count = 10, thumbs = false) {
     let qs: string = `&count=${count}`;
     qs = this.isThumbs(qs, thumbs);
 
@@ -83,7 +86,7 @@ export class Nasa {
 
   // Neo
 
-  public async neoFeed(from: Date = new Date(), to: Date = new Date()) {
+  public async neoFeed(from = getLast30(), to = getNow()) {
     let qs: string = `&start_date=${formatDate(from)}`;
     qs += `&end_date=${formatDate(to)}`;
 
@@ -129,6 +132,22 @@ export class Nasa {
     const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
 
     return await this.fetchData<GeomagneticStorm[]>(`${this.donkiUrl}/GST`, qs);
+  }
+
+  public async donkiIps(
+    from = getLast30(),
+    to = getNow(),
+    location: Location = 'ALL',
+    catalog: Catalog = 'ALL'
+  ) {
+    const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(
+      to
+    )}&location=${location}&catalog=${catalog}`;
+
+    return await this.fetchData<InterplanetaryShock[]>(
+      `${this.donkiUrl}/IPS`,
+      qs
+    );
   }
 }
 
