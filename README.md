@@ -329,6 +329,35 @@ const to = new Date(2023, 2, 8);
 const ips: Result<SolarFlare> = await nasa.donkiIps(from, to);
 ```
 
+#### donkiSep
+
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/SEP` REST API, in order to return the *Solar Energetic Particle (SEP)* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiSep(from: Date, to: Date ): Promise<Result<SolarEnergeticParticle>> 
+```
+
+Method parameters
+
+| Parameter | Type | Required | Default        |
+| --------- | ---- | :------: | -------------- |
+| from      | Date |    No    | 30 days before |
+| to        | Date |    No    | today          |
+
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const sep: Result<SolarEnergeticParticle> = await nasa.donkiSep(from, to);
+```
+
+
 
 
 ---

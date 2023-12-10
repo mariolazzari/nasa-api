@@ -59,8 +59,6 @@ describe('DONKI', () => {
   it('should return last 30 days Solar Energetic Particle (SEP)', async () => {
     const { success, error, data } = await nasa.donkiSep(from, to);
 
-    console.log('first', data);
-
     expect(success).toBeTruthy();
     expect(error).toBeUndefined();
     expect(data).toBeDefined();
