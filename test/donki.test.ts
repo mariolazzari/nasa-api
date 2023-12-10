@@ -10,14 +10,6 @@ describe('DONKI', () => {
     expect(data).toBeDefined();
   });
 
-  it('should return last  7 days Coronal Mass Ejection (CME)', async () => {
-    const { success, error, data } = await nasa.donkiCme(from, to);
-
-    expect(success).toBeTruthy();
-    expect(error).toBeUndefined();
-    expect(data).toBeDefined();
-  });
-
   it('should return last 30 days Coronal Mass Ejection Analysis (CME Analysis)', async () => {
     const { success, error, data } = await nasa.donkiCmeAnalysis();
 
@@ -41,8 +33,6 @@ describe('DONKI', () => {
   });
 
   it('should return last 30 days Geomagnetic Storm (GST)', async () => {
-    const from = new Date(2020, 0, 1);
-    const to = new Date(2020, 0, 31);
     const { success, error, data } = await nasa.donkiGst(from, to);
 
     expect(success).toBeTruthy();
@@ -51,8 +41,6 @@ describe('DONKI', () => {
   });
 
   it('should return last 30 days Interplanetary Shock (IPS)', async () => {
-    const from = new Date(2020, 0, 1);
-    const to = new Date(2020, 0, 31);
     const { success, error, data } = await nasa.donkiIps(from, to);
 
     expect(success).toBeTruthy();
@@ -61,9 +49,15 @@ describe('DONKI', () => {
   });
 
   it('should return last 30 days Solar Flare (FLR)', async () => {
-    const from = new Date(2020, 0, 1);
-    const to = new Date(2020, 0, 31);
     const { success, error, data } = await nasa.donkiFlr(from, to);
+
+    expect(success).toBeTruthy();
+    expect(error).toBeUndefined();
+    expect(data).toBeDefined();
+  });
+
+  it('should return last 30 days Solar Energetic Particle (SEP)', async () => {
+    const { success, error, data } = await nasa.donkiSep(from, to);
 
     console.log('first', data);
 

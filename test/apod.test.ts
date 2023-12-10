@@ -14,12 +14,12 @@ describe('Picture of the day', () => {
     expect(error).toBeUndefined();
   });
 
-  it('should return one week pictures', async () => {
+  it('should return one month pictures', async () => {
     const { success, data, error } = await nasa.apodDates(from, to);
 
     expect(success).toBeTruthy();
     expect(data).toBeDefined();
-    expect((data as Apod[]).length).toBe(8);
+    expect((data as Apod[]).length).toBe(30);
     expect(error).toBeUndefined();
   });
 

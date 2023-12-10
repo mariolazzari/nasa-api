@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { getNow, getLast30, DAYS_30, formatDate } from '../src/utils';
+import {
+  getNow,
+  getLastMonth,
+  MONTH,
+  formatDate,
+  getLastWeek,
+  WEEK,
+} from '../src/utils';
 import { from, to } from './global';
 
 describe('Utilities', () => {
@@ -13,10 +20,16 @@ describe('Utilities', () => {
     expect(now.getMinutes).toBe(NOW.getMinutes);
   });
 
-  it('should return last 30 days', () => {
-    const last30 = getLast30();
+  it('should return last 7 days', () => {
+    const last7 = getLastWeek();
 
-    expect(NOW.getTime() - last30.getTime()).toBeLessThanOrEqual(DAYS_30);
+    expect(NOW.getTime() - last7.getTime()).toBeLessThanOrEqual(WEEK);
+  });
+
+  it('should return last 30 days', () => {
+    const last30 = getLastMonth();
+
+    expect(NOW.getTime() - last30.getTime()).toBeLessThanOrEqual(MONTH);
   });
 
   it('should format date', () => {

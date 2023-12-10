@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { nasa, from, to } from './global';
+import { nasa, from, toWeek } from './global';
 
 describe('Near Earth objects', () => {
   it('should returns one week', async () => {
-    const { success, data, error } = await nasa.neoFeed(from, to);
+    const { success, data, error } = await nasa.neoFeed(from, toWeek);
 
     expect(success).toBeTruthy();
     expect(error).toBeUndefined();
@@ -26,6 +26,6 @@ describe('Near Earth objects', () => {
 
     expect(success).toBeTruthy();
     expect(error).toBeUndefined();
-    expect(data).toBeDefined;
+    expect(data).toBeDefined();
   });
 });
