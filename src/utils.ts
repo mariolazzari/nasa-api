@@ -1,8 +1,11 @@
-export const DAYS_30 = 2592000000;
+export const WEEK = 604800000;
+export const MONTH = 2592000000;
 
 export const getNow = () => new Date();
 
-export const getLast30 = () => new Date(new Date().getTime() - DAYS_30);
+export const getLastWeek = () => new Date(new Date().getTime() - WEEK);
+
+export const getLastMonth = () => new Date(new Date().getTime() - MONTH);
 
 export const formatDate = (date: Date = new Date()) => {
   const year = date.getFullYear();

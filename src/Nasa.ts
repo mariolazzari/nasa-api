@@ -5,12 +5,13 @@ import CoronalMassEjectionAnalysis from './types/donki/CoronalMassEjectionAnalys
 import GeomagneticStorm from './types/donki/GeomagneticStorm';
 import InterplanetaryShock from './types/donki/InterplanetaryShock';
 import Location from './types/donki/Location';
+import SolarEnergeticParticle from './types/donki/SolarEnergeticParticle';
 import SolarFlare from './types/donki/SolarFlare';
 import Link from './types/Link';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
 import Result from './types/Result';
-import { formatDate, getLast30, getNow } from './utils';
+import { formatDate, getNow, getLastWeek, getLastMonth } from './utils';
 
 export class Nasa {
   private readonly apiKey: string;
@@ -87,7 +88,7 @@ export class Nasa {
 
   // Neo
 
-  public async neoFeed(from = getLast30(), to = getNow()) {
+  public async neoFeed(from = getLastWeek(), to = getNow()) {
     let qs: string = `&start_date=${formatDate(from)}`;
     qs += `&end_date=${formatDate(to)}`;
 
@@ -102,7 +103,7 @@ export class Nasa {
 
   // Donki
 
-  public async donkiCme(from = getLast30(), to = getNow()) {
+  public async donkiCme(from = getLastMonth(), to = getNow()) {
     let qs: string = `&start_date=${formatDate(from)}`;
     qs += `&end_date=${formatDate(to)}`;
 
@@ -113,7 +114,7 @@ export class Nasa {
   }
 
   public async donkiCmeAnalysis(
-    from = getLast30(),
+    from = getLastMonth(),
     to = getNow(),
     mostAccurateOnly = true,
     completeEntryOnly = true,
@@ -129,14 +130,14 @@ export class Nasa {
     );
   }
 
-  public async donkiGst(from = getLast30(), to = getNow()) {
+  public async donkiGst(from = getLastMonth(), to = getNow()) {
     const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
 
     return await this.fetchData<GeomagneticStorm[]>(`${this.donkiUrl}/GST`, qs);
   }
 
   public async donkiIps(
-    from = getLast30(),
+    from = getLastMonth(),
     to = getNow(),
     location: Location = 'ALL',
     catalog: Catalog = 'ALL'
@@ -151,10 +152,19 @@ export class Nasa {
     );
   }
 
-  public async donkiFlr(from = getLast30(), to = getNow()) {
+  public async donkiFlr(from = getLastMonth(), to = getNow()) {
     const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
 
     return await this.fetchData<SolarFlare[]>(`${this.donkiUrl}/FLR`, qs);
+  }
+
+  public async donkiSep(from = getLastMonth(), to = getNow()) {
+    const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
+
+    return await this.fetchData<SolarEnergeticParticle[]>(
+      `${this.donkiUrl}/SEP`,
+      qs
+    );
   }
 }
 
