@@ -71,4 +71,12 @@ describe('DONKI', () => {
     expect(error).toBeUndefined();
     expect(data).toBeDefined();
   });
+
+  it('should return last 30 days Radiation Belt Enhancement (RBE)', async () => {
+    const { success, error, data } = await nasa.donkiRbe(from, to);
+
+    expect(success).toBeTruthy();
+    expect(error).toBeUndefined();
+    expect(data).toBeDefined();
+  });
 });

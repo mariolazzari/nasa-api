@@ -385,6 +385,34 @@ const to = new Date(2023, 2, 8);
 const sep: Result<MagnetopauseCrossing> = await nasa.donkiMpc(from, to);
 ```
 
+#### donkiRbe
+
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/RBE` REST API, in order to return the *Radiation Belt Enhancement (RBE)* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiRbe(from: Date, to: Date ): Promise<Result<RadiationBeltEnhancement>> 
+```
+
+Method parameters
+
+| Parameter | Type | Required | Default        |
+| --------- | ---- | :------: | -------------- |
+| from      | Date |    No    | 30 days before |
+| to        | Date |    No    | today          |
+
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const sep: Result<RadiationBeltEnhancement> = await nasa.donkiRbe(from, to);
+```
+
 
 ---
 

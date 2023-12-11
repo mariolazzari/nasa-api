@@ -6,6 +6,7 @@ import GeomagneticStorm from './types/donki/GeomagneticStorm';
 import InterplanetaryShock from './types/donki/InterplanetaryShock';
 import Location from './types/donki/Location';
 import { MagnetopauseCrossing } from './types/donki/MagnetopauseCrossing';
+import RadiationBeltEnhancement from './types/donki/RadiationBeltEnhancement';
 import SolarEnergeticParticle from './types/donki/SolarEnergeticParticle';
 import SolarFlare from './types/donki/SolarFlare';
 import Link from './types/Link';
@@ -173,6 +174,15 @@ export class Nasa {
 
     return await this.fetchData<MagnetopauseCrossing[]>(
       `${this.donkiUrl}/MPC`,
+      qs
+    );
+  }
+
+  public async donkiRbe(from = getLastMonth(), to = getNow()) {
+    const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
+
+    return await this.fetchData<RadiationBeltEnhancement[]>(
+      `${this.donkiUrl}/RBE`,
       qs
     );
   }
