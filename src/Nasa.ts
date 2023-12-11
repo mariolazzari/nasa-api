@@ -10,6 +10,7 @@ import { MagnetopauseCrossing } from './types/donki/MagnetopauseCrossing';
 import RadiationBeltEnhancement from './types/donki/RadiationBeltEnhancement';
 import SolarEnergeticParticle from './types/donki/SolarEnergeticParticle';
 import SolarFlare from './types/donki/SolarFlare';
+import WsaEnlilSimulation from './types/donki/WsaEnlilSimulation';
 import Link from './types/Link';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
@@ -192,6 +193,15 @@ export class Nasa {
     const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
 
     return await this.fetchData<HightSpeedStream[]>(`${this.donkiUrl}/HSS`, qs);
+  }
+
+  public async donkiWsa(from = getLastMonth(), to = getNow()) {
+    const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
+
+    return await this.fetchData<WsaEnlilSimulation[]>(
+      `${this.donkiUrl}/WSAEnlilSimulations`,
+      qs
+    );
   }
 }
 
