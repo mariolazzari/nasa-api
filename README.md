@@ -357,7 +357,33 @@ const to = new Date(2023, 2, 8);
 const sep: Result<SolarEnergeticParticle> = await nasa.donkiSep(from, to);
 ```
 
+#### donkiMpc
 
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/MPC` REST API, in order to return the *Magnetopause Crossing (MPC)* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiMpc(from: Date, to: Date ): Promise<Result<MagnetopauseCrossing>> 
+```
+
+Method parameters
+
+| Parameter | Type | Required | Default        |
+| --------- | ---- | :------: | -------------- |
+| from      | Date |    No    | 30 days before |
+| to        | Date |    No    | today          |
+
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const sep: Result<MagnetopauseCrossing> = await nasa.donkiMpc(from, to);
+```
 
 
 ---
