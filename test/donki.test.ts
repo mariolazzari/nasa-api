@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { nasa, from, to } from './global';
+import Notification from '../src/types/donki/Notification';
+import NotificationType from '../src/types/donki/NotificationType';
 
 describe('DONKI', () => {
   it('should return last 30 days Coronal Mass Ejection (CME)', async () => {
@@ -94,5 +96,29 @@ describe('DONKI', () => {
     expect(success).toBeTruthy();
     expect(error).toBeUndefined();
     expect(data).toBeDefined();
+  });
+
+  it('should return last 30 days Notification (all types)', async () => {
+    const { success, error, data } = await nasa.donkiNotifications(from, to);
+
+    expect(success).toBeTruthy();
+    expect(error).toBeUndefined();
+    expect(data).toBeDefined();
+  });
+
+  it('should return last 30 days Notification (CME only)', async () => {
+    const type: NotificationType = 'CME';
+    const { success, error, data } = await nasa.donkiNotifications(
+      from,
+      to,
+      type
+    );
+
+    expect(success).toBeTruthy();
+    expect(error).toBeUndefined();
+    expect(data).toBeDefined();
+    expect(
+      ((data as unknown) as Notification[]).every(n => n.messageType === type)
+    );
   });
 });

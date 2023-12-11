@@ -6,7 +6,8 @@ import GeomagneticStorm from './types/donki/GeomagneticStorm';
 import HightSpeedStream from './types/donki/HightSpeedStream';
 import InterplanetaryShock from './types/donki/InterplanetaryShock';
 import Location from './types/donki/Location';
-import { MagnetopauseCrossing } from './types/donki/MagnetopauseCrossing';
+import MagnetopauseCrossing from './types/donki/MagnetopauseCrossing';
+import NotificationType from './types/donki/NotificationType';
 import RadiationBeltEnhancement from './types/donki/RadiationBeltEnhancement';
 import SolarEnergeticParticle from './types/donki/SolarEnergeticParticle';
 import SolarFlare from './types/donki/SolarFlare';
@@ -15,7 +16,7 @@ import Link from './types/Link';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
 import Result from './types/Result';
-import { formatDate, getNow, getLastWeek, getLastMonth } from './utils';
+import { formatDate, getNow, getLastWeek, getLastMonth } from './utils/dates';
 
 export class Nasa {
   private readonly apiKey: string;
@@ -200,6 +201,21 @@ export class Nasa {
 
     return await this.fetchData<WsaEnlilSimulation[]>(
       `${this.donkiUrl}/WSAEnlilSimulations`,
+      qs
+    );
+  }
+
+  public async donkiNotifications(
+    from = getLastMonth(),
+    to = getNow(),
+    type: NotificationType = 'all'
+  ) {
+    const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(
+      to
+    )}&type=${type}`;
+
+    return await this.fetchData<Notification[]>(
+      `${this.donkiUrl}/notifications`,
       qs
     );
   }

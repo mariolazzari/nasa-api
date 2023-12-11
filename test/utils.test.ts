@@ -6,7 +6,7 @@ import {
   formatDate,
   getLastWeek,
   WEEK,
-} from '../src/utils';
+} from '../src/utils/dates';
 import { from, to } from './global';
 
 describe('Utilities', () => {

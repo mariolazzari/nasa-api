@@ -450,7 +450,7 @@ This asynchronous **method** handles `GET /DONKI/WSAEnlilSimulations` REST API, 
 *Prototype*
 
 ```ts
-async donkiRbe(from: Date, to: Date ): Promise<Result<WsaEnlilSimulation[]>> 
+async donkiWsa(from: Date, to: Date ): Promise<Result<WsaEnlilSimulation[]>> 
 ```
 
 Method parameters
@@ -467,6 +467,37 @@ Method parameters
 const from = new Date(2023, 2, 21);
 const to = new Date(2023, 2, 8);
 const sep: Result<WsaEnlilSimulation[]> = await nasa.donkiWsa(from, to);
+```
+
+
+#### donkiNotifications
+
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/notifications` REST API, in order to return the *Notifications* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiNotifications(from: Date, to: Date ): Promise<Result<Notification[]>> 
+```
+
+Method parameters
+
+| Parameter | Type             | Required | Default        |
+| --------- | ---------------- | :------: | -------------- |
+| from      | Date             |    No    | 30 days before |
+| to        | Date             |    No    | today          |
+| type      | NotificationType |    no    | all            |
+
+
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const sep: Result<Notification[]> = await nasa.donkiNotifications(from, to);
 ```
 
 
