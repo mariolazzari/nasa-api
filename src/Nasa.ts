@@ -3,6 +3,7 @@ import Catalog from './types/donki/Catalog';
 import CoronalMassEjection from './types/donki/CoronalMassEjection';
 import CoronalMassEjectionAnalysis from './types/donki/CoronalMassEjectionAnalysis';
 import GeomagneticStorm from './types/donki/GeomagneticStorm';
+import HightSpeedStream from './types/donki/HightSpeedStream';
 import InterplanetaryShock from './types/donki/InterplanetaryShock';
 import Location from './types/donki/Location';
 import { MagnetopauseCrossing } from './types/donki/MagnetopauseCrossing';
@@ -185,6 +186,12 @@ export class Nasa {
       `${this.donkiUrl}/RBE`,
       qs
     );
+  }
+
+  public async donkiHss(from = getLastMonth(), to = getNow()) {
+    const qs = `&start_date=${formatDate(from)}&end_date=${formatDate(to)}`;
+
+    return await this.fetchData<HightSpeedStream[]>(`${this.donkiUrl}/HSS`, qs);
   }
 }
 

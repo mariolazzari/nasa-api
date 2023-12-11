@@ -9,7 +9,7 @@ export type CoronalMassEjection = {
   activeRegionNum?: string;
   link: string;
   note: string;
-  instruments: Instrument[];
+  instruments?: Instrument[];
   cmeAnalyses: CoronalMassEjectionAnalysis[];
   linkedEvents?: string;
 };

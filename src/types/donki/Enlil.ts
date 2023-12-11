@@ -12,7 +12,7 @@ export type Enlil = {
   kp_180?: string;
   isEarthGB: boolean;
   link: string;
-  impactList: Impact[];
+  impactList?: Impact[];
   cmeIDs: string[];
 };
 

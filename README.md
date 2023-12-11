@@ -155,7 +155,7 @@ This asynchronous **method** handles `GET /neo/rest/v1/feed` REST API, in order 
 *Prototype*
 
 ```ts
-async neoFeed(from: Date, to: Date): Promise<Result<NeoRespons>> 
+async neoFeed(from: Date, to: Date): Promise<Result<NeoResponse>> 
 ```
 
 *Sample code*
@@ -195,7 +195,7 @@ This asynchronous **method** handles `GET /DONKI/CME` REST API, in order to retu
 *Prototype*
 
 ```ts
-async donkiCme(from: Date, to: Date): Promise<Result<CoronalMassEjection>> 
+async donkiCme(from: Date, to: Date): Promise<Result<CoronalMassEjection[]>> 
 ```
 
 Method parameters
@@ -211,7 +211,7 @@ Method parameters
 ```ts
 const from = new Date(2023, 2, 21);
 const to = new Date(2023, 2, 8);
-const cme: Result<CoronalMassEjection> = await nasa.donkiCme(from, to);
+const cme: Result<CoronalMassEjection[]> = await nasa.donkiCme(from, to);
 ```
 
 #### donkiCmeAnalysis
@@ -223,7 +223,7 @@ This asynchronous **method** handles `GET /DONKI/CMEAnalysis` REST API, in order
 *Prototype*
 
 ```ts
-async donkiCme(from: Date, to: Date, mostAccurateOnly: boolean, completeEntryOnly: boolean, speed:number ): Promise<Result<CoronalMassEjectionAnalysis>> 
+async donkiCme(from: Date, to: Date, mostAccurateOnly: boolean, completeEntryOnly: boolean, speed:number ): Promise<Result<CoronalMassEjectionAnalysis[]>> 
 ```
 
 Method parameters
@@ -242,7 +242,7 @@ Method parameters
 ```ts
 const from = new Date(2023, 2, 21);
 const to = new Date(2023, 2, 8);
-const cmeAnalysis: Result<CoronalMassEjectionAnalysis> = await nasa.donkiCmeAnalysis(from, to);
+const cmeAnalysis: Result<CoronalMassEjectionAnalysis>[] = await nasa.donkiCmeAnalysis(from, to);
 ```
 
 #### donkiGst
@@ -254,7 +254,7 @@ This asynchronous **method** handles `GET /DONKI/GST` REST API, in order to retu
 *Prototype*
 
 ```ts
-async donkiGst(from: Date, to: Date ): Promise<Result<GeomagneticStorm>> 
+async donkiGst(from: Date, to: Date ): Promise<Result<GeomagneticStorm[]>> 
 ```
 
 Method parameters
@@ -270,7 +270,7 @@ Method parameters
 ```ts
 const from = new Date(2023, 2, 21);
 const to = new Date(2023, 2, 8);
-const gst: Result<GeomagneticStorm> = await nasa.donkiCme(from, to);
+const gst: Result<GeomagneticStorm[]> = await nasa.donkiCme(from, to);
 ```
 
 #### donkiIps
@@ -282,7 +282,7 @@ This asynchronous **method** handles `GET /DONKI/IPS` REST API, in order to retu
 *Prototype*
 
 ```ts
-async donkiIps(from: Date, to: Date ): Promise<Result<InterplanetaryShock>> 
+async donkiIps(from: Date, to: Date ): Promise<Result<InterplanetaryShock[]>> 
 ```
 
 Method parameters
@@ -298,7 +298,7 @@ Method parameters
 ```ts
 const from = new Date(2023, 2, 21);
 const to = new Date(2023, 2, 8);
-const ips: Result<InterplanetaryShock> = await nasa.donkiIps(from, to);
+const ips: Result<InterplanetaryShock[]> = await nasa.donkiIps(from, to);
 ```
 
 #### donkiFlr
@@ -310,7 +310,7 @@ This asynchronous **method** handles `GET /DONKI/FLR` REST API, in order to retu
 *Prototype*
 
 ```ts
-async donkiFlr(from: Date, to: Date ): Promise<Result<SolarFlare>> 
+async donkiFlr(from: Date, to: Date ): Promise<Result<SolarFlare[]>> 
 ```
 
 Method parameters
@@ -326,7 +326,7 @@ Method parameters
 ```ts
 const from = new Date(2023, 2, 21);
 const to = new Date(2023, 2, 8);
-const ips: Result<SolarFlare> = await nasa.donkiIps(from, to);
+const ips: Result<SolarFlare[]> = await nasa.donkiIps(from, to);
 ```
 
 #### donkiSep
@@ -338,7 +338,7 @@ This asynchronous **method** handles `GET /DONKI/SEP` REST API, in order to retu
 *Prototype*
 
 ```ts
-async donkiSep(from: Date, to: Date ): Promise<Result<SolarEnergeticParticle>> 
+async donkiSep(from: Date, to: Date ): Promise<Result<SolarEnergeticParticle[]>> 
 ```
 
 Method parameters
@@ -354,7 +354,7 @@ Method parameters
 ```ts
 const from = new Date(2023, 2, 21);
 const to = new Date(2023, 2, 8);
-const sep: Result<SolarEnergeticParticle> = await nasa.donkiSep(from, to);
+const sep: Result<SolarEnergeticParticle[]> = await nasa.donkiSep(from, to);
 ```
 
 #### donkiMpc
@@ -366,7 +366,7 @@ This asynchronous **method** handles `GET /DONKI/MPC` REST API, in order to retu
 *Prototype*
 
 ```ts
-async donkiMpc(from: Date, to: Date ): Promise<Result<MagnetopauseCrossing>> 
+async donkiMpc(from: Date, to: Date ): Promise<Result<MagnetopauseCrossing[]>> 
 ```
 
 Method parameters
@@ -382,7 +382,7 @@ Method parameters
 ```ts
 const from = new Date(2023, 2, 21);
 const to = new Date(2023, 2, 8);
-const sep: Result<MagnetopauseCrossing> = await nasa.donkiMpc(from, to);
+const sep: Result<MagnetopauseCrossing[]> = await nasa.donkiMpc(from, to);
 ```
 
 #### donkiRbe
@@ -394,7 +394,7 @@ This asynchronous **method** handles `GET /DONKI/RBE` REST API, in order to retu
 *Prototype*
 
 ```ts
-async donkiRbe(from: Date, to: Date ): Promise<Result<RadiationBeltEnhancement>> 
+async donkiRbe(from: Date, to: Date ): Promise<Result<RadiationBeltEnhancement[]>> 
 ```
 
 Method parameters
@@ -413,6 +413,33 @@ const to = new Date(2023, 2, 8);
 const sep: Result<RadiationBeltEnhancement> = await nasa.donkiRbe(from, to);
 ```
 
+#### donkiHss
+
+*Description*
+
+This asynchronous **method** handles `GET /DONKI/HSS` REST API, in order to return the *Hight Speed Stream (HSS)* for selected dates range.
+
+*Prototype*
+
+```ts
+async donkiRbe(from: Date, to: Date ): Promise<Result<HightSpeedStream[]>> 
+```
+
+Method parameters
+
+| Parameter | Type | Required | Default        |
+| --------- | ---- | :------: | -------------- |
+| from      | Date |    No    | 30 days before |
+| to        | Date |    No    | today          |
+
+
+*Sample code*
+
+```ts
+const from = new Date(2023, 2, 21);
+const to = new Date(2023, 2, 8);
+const sep: Result<HightSpeedStream[]> = await nasa.donkiHss(from, to);
+```
 
 ---
 

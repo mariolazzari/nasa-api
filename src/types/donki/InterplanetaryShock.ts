@@ -7,7 +7,7 @@ export type InterplanetaryShock = {
   location: Location;
   eventTime: string;
   link: string;
-  instruments: Instrument[];
+  instruments?: Instrument[];
 };
 
 export default InterplanetaryShock;

@@ -79,4 +79,12 @@ describe('DONKI', () => {
     expect(error).toBeUndefined();
     expect(data).toBeDefined();
   });
+
+  it('should return last 30 days Hight Speed Stream (HSS)', async () => {
+    const { success, error, data } = await nasa.donkiHss(from, to);
+
+    expect(success).toBeTruthy();
+    expect(error).toBeUndefined();
+    expect(data).toBeDefined();
+  });
 });

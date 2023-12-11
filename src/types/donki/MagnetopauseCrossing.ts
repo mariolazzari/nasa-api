@@ -4,8 +4,8 @@ import Event from './Event';
 export type MagnetopauseCrossing = {
   mpcID: string;
   eventTime: string;
-  instruments: Instrument[];
-  linkedEvents: Event[];
+  instruments?: Instrument[];
+  linkedEvents?: Event[];
   link: string;
 };
 
