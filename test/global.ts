@@ -10,3 +10,6 @@ export const to = new Date(2016, 0, 30);
 export const toWeek = new Date(2016, 0, 7);
 export const count = 10;
 export const thumbs = true;
+
+export const latitude = 45.566458;
+export const longitude = 9.975584;

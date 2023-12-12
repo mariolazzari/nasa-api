@@ -24,6 +24,7 @@ export class Nasa {
   private apodUrl = '/planetary/apod' as const;
   private neoUrl = '/neo/rest/v1' as const;
   private donkiUrl = '/DONKI' as const;
+  // private earthUrl = '/planetary/earth' as const;
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
@@ -219,6 +220,25 @@ export class Nasa {
       qs
     );
   }
+
+  // earth
+
+  // TODO: service unavable?
+
+  /*
+  public async earthImagery(
+    lat: number,
+    lon: number,
+    dim = 0.025,
+    date = getNow(),
+    cloudeScore = false
+  ) {
+    const qs = `&lat=${lat}&lon=${lon}&dim=${dim}&date=${formatDate(
+      date
+    )}&cloude_score=${cloudeScore}`;
+
+    return await this.fetchData<Notification[]>(`${this.donkiUrl}/imagery`, qs);
+  }*/
 }
 
 export default Nasa;
