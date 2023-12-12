@@ -66,7 +66,10 @@ export class Nasa {
 
   // Apod
 
-  public async apodDate(date = getNow(), thumbs: boolean = false) {
+  public async apodDate(
+    date = getNow(),
+    thumbs: boolean = false
+  ): Promise<Result<Apod>> {
     let qs: string = `&date=${formatDate(date)}`;
     qs = this.isThumbs(qs, thumbs);
 
@@ -77,7 +80,7 @@ export class Nasa {
     from: Date = new Date(),
     to: Date = new Date(),
     thumbs: boolean = false
-  ) {
+  ): Promise<Result<Apod[]>> {
     let qs: string = `&start_date=${formatDate(from)}`;
     qs += `&end_date=${formatDate(to)}`;
     qs = this.isThumbs(qs, thumbs);
@@ -85,7 +88,7 @@ export class Nasa {
     return await this.fetchData<Apod[]>(this.apodUrl, qs);
   }
 
-  public async apodRandom(count = 10, thumbs = false) {
+  public async apodRandom(count = 10, thumbs = false): Promise<Result<Apod[]>> {
     let qs: string = `&count=${count}`;
     qs = this.isThumbs(qs, thumbs);
 
