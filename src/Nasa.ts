@@ -13,6 +13,7 @@ import SolarEnergeticParticle from './types/donki/SolarEnergeticParticle';
 import SolarFlare from './types/donki/SolarFlare';
 import WsaEnlilSimulation from './types/donki/WsaEnlilSimulation';
 import Link from './types/Link';
+import Camera from './types/mars/Camera';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
 import Result from './types/Result';
@@ -25,6 +26,34 @@ export class Nasa {
   private neoUrl = '/neo/rest/v1' as const;
   private donkiUrl = '/DONKI' as const;
   // private earthUrl = '/planetary/earth' as const;
+  // private eonetUrl = 'https://eonet.gsfc.nasa.gov/api/v3' as const;
+
+  private roverCameras: Camera[] = [
+    {
+      code: 'FHAZ',
+      description: 'Front Hazard Avoidance Camera',
+      curiosity: true,
+      opportunity: true,
+      spirit: true,
+    },
+    {
+      code: 'RHAZ',
+      description: 'Rear Hazard Avoidance Camera',
+      curiosity: true,
+      opportunity: true,
+      spirit: true,
+    },
+    {
+      code: 'MAST',
+      description: 'Mast Camera',
+      curiosity: true,
+    },
+    {
+      code: 'CHEMCAM',
+      description: 'Chemistry and Camera Complex',
+      curiosity: true,
+    },
+  ];
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
@@ -242,6 +271,20 @@ export class Nasa {
 
     return await this.fetchData<Notification[]>(`${this.donkiUrl}/imagery`, qs);
   }*/
+
+  // Eonet
+
+  public async eonetEvents() {}
+
+  // Mars rover photos
+  public marsCameras = () => {
+    const result: Result<Camera[]> = {
+      success: true,
+      data: this.roverCameras,
+    };
+
+    return result;
+  };
 }
 
 export default Nasa;
