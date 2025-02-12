@@ -85,6 +85,26 @@ Constructor parameters
 | --------- | ------ | :------: | ------- |
 | apiKey    | string |   Yes    |         |
 
+### Types
+
+Nasa client inculdes the following types:
+
+#### Result<T>
+
+Discriminated uniion with the following structure:
+
+```ts
+type Result<T> =
+  | {
+      success: true;
+      data: T;
+    }
+  | {
+      success: false;
+      error: string;
+    };
+```
+
 ### Methods
 
 Nasa client includes the following three methods:

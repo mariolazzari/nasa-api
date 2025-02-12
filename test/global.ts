@@ -13,3 +13,15 @@ export const thumbs = true;
 
 export const latitude = 45.566458;
 export const longitude = 9.975584;
+
+import { expect } from 'vitest';
+import { Result } from '../src/types/Result';
+
+export function checkResponse<T>(res: Result<T>): void {
+  if (res.success) {
+    expect(res.data).toBeDefined();
+  } else {
+    expect(res.success).toBeFalsy();
+    expect(res.error).toBeDefined();
+  }
+}

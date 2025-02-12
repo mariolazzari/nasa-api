@@ -7,6 +7,7 @@ import HightSpeedStream from './types/donki/HightSpeedStream';
 import InterplanetaryShock from './types/donki/InterplanetaryShock';
 import Location from './types/donki/Location';
 import MagnetopauseCrossing from './types/donki/MagnetopauseCrossing';
+import Notification from './types/donki/Notification';
 import NotificationType from './types/donki/NotificationType';
 import RadiationBeltEnhancement from './types/donki/RadiationBeltEnhancement';
 import SolarEnergeticParticle from './types/donki/SolarEnergeticParticle';
@@ -16,7 +17,7 @@ import Link from './types/Link';
 import Camera from './types/mars/Camera';
 import Neo from './types/neo/Neo';
 import NeoResponse from './types/neo/NeroResponse';
-import Result from './types/Result';
+import { Result } from './types/Result';
 import { formatDate, getNow, getLastWeek, getLastMonth } from './utils/dates';
 
 export class Nasa {
@@ -59,30 +60,34 @@ export class Nasa {
     this.apiKey = apiKey;
   }
 
-  private async fetchData<T>(url: string, qs: string = '') {
-    let result: Result<T> = {
-      success: false,
-    };
-
+  private async fetchData<T>(url: string, qs: string = ''): Promise<Result<T>> {
     try {
+      // api call
       const res = await fetch(
         `${this.baseUrl}${url}?api_key=${this.apiKey}${qs}`
       );
-      if (res.ok) {
-        const data: T = await res.json();
-        result.data = data;
-        result.success = true;
-      } else {
-        result.error = res.statusText;
+
+      // check errors
+      if (!res.ok) {
+        throw new Error(res.statusText);
       }
+
+      // cast response
+      const data: T = await res.json();
+
+      // success
+      return {
+        success: true,
+        data,
+      };
     } catch (ex) {
-      if (ex instanceof Error) {
-        result.error = ex.message;
-      } else {
-        result.error = 'Internal server error';
-      }
-    } finally {
-      return result;
+      // error
+      const error = ex instanceof Error ? ex.message : 'Internal server error';
+
+      return {
+        success: false,
+        error,
+      };
     }
   }
 
@@ -94,7 +99,6 @@ export class Nasa {
   }
 
   // Apod
-
   public async apodDate(
     date = getNow(),
     thumbs: boolean = false
@@ -125,7 +129,6 @@ export class Nasa {
   }
 
   // Neo
-
   public async neoFeed(from = getLastWeek(), to = getNow()) {
     let qs: string = `&start_date=${formatDate(from)}`;
     qs += `&end_date=${formatDate(to)}`;
@@ -140,7 +143,6 @@ export class Nasa {
   }
 
   // Donki
-
   public async donkiCme(from = getLastMonth(), to = getNow()) {
     let qs: string = `&start_date=${formatDate(from)}`;
     qs += `&end_date=${formatDate(to)}`;
