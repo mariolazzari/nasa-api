@@ -7,7 +7,6 @@ describe('Picture of the day', () => {
   it('should return today picture', async () => {
     const today = formatDate();
     const res = await nasa.apodDate();
-
     checkResponse(res);
 
     expect(res.success).toBeTruthy();
