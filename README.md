@@ -120,6 +120,22 @@ This asynchronous **method** handles `GET /planetary/apod` REST API, in order to
 ```ts
 async apodDate(date: Date = new Date()): Promise<Result<Apod>> 
 ```
+*Types*
+
+```ts
+type Apod = {
+  copyright: string;
+  date: string;
+  explanation: string;
+  media_type: MediaType;
+  service_version: string;
+  title: string;
+  url: string;
+  hdurl: string;
+};
+
+type MediaType = 'image' | 'video';
+```
 
 *Sample code*
 

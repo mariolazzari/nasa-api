@@ -8,6 +8,7 @@ export type Apod = {
   service_version: string;
   title: string;
   url: string;
+  hdurl: string;
 };
 
 export default Apod;
