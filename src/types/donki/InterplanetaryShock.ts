@@ -1,5 +1,5 @@
 import Catalog from './Catalog';
-import Instrument from './Instrument';
+import { Instrument } from './Instrument';
 
 export type InterplanetaryShock = {
   catalog: Catalog;
