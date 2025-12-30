@@ -1,5 +1,5 @@
-import Instrument from './Instrument';
-import Event from './Event';
+import { Instrument } from "./Instrument";
+import Event from "./Event";
 
 export type MagnetopauseCrossing = {
   mpcID: string;
@@ -8,5 +8,3 @@ export type MagnetopauseCrossing = {
   linkedEvents?: Event[];
   link: string;
 };
-
-export default Instrument;

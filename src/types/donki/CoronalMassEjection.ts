@@ -1,5 +1,5 @@
-import CoronalMassEjectionAnalysis from './CoronalMassEjectionAnalysis';
-import Instrument from './Instrument';
+import CoronalMassEjectionAnalysis from "./CoronalMassEjectionAnalysis";
+import { Instrument } from "./Instrument";
 
 export type CoronalMassEjection = {
   activityID: string;

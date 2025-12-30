@@ -1,5 +1,5 @@
-import Event from './Event';
-import Instrument from './Instrument';
+import Event from "./Event";
+import { Instrument } from "./Instrument";
 
 export type RadiationBeltEnhancement = {
   rbeID: string;
