@@ -40,13 +40,13 @@
   "author": "Mario Lazzari",
   "module": "dist/nasa-api.esm.js",
   "devDependencies": {
-    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/coverage-v8": "^4.0.17",
     "bunchee": "^6.9.3",
     "dotenv": "^17.2.3",
     "tsdx": "^2.0.0",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "vitest": "^4.0.17"
   },
   "keywords": [
     "nasa",
